@@ -39,7 +39,14 @@
 		$('.login-area').hide();
 		return false;
 	});
-	
+	$('.signup-popup').on('click', function () {
+		$('.signup-area').show();
+		return false;
+	});
+	$('.signup-box > a').on('click', function () {
+		$('.signup-area').hide();
+		return false;
+	});	
 	/*----------------------------
     START - Slider activation
     ------------------------------ */

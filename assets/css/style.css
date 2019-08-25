@@ -1,7 +1,7 @@
 /*
 Theme Name: Movie Point
 Version: 1.0
-Author: Jsoft
+Author: AWESOME
 Description: Online Movie,Vedio and TV Show HTML Template
 */
 
@@ -1197,6 +1197,117 @@ hr {
     background: #0084b1;
 }
 .login-social a i.icofont-camera {
+    background: #c536a4;
+}
+
+.signup-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+	display: none;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 99;
+	padding: 0 15px;
+}
+
+.signup-box {
+    max-width: 380px;
+    background: #fff;
+    position: relative;
+    color: #03090e;
+    margin: 200px auto 0;
+    padding: 40px 25px 25px;
+}
+
+.signup-box a {
+    color: #03090e;
+}
+
+.signup-box > a {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #eb315a;
+    font-size: 22px;
+    color: #fff;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+}
+
+.signup-box h2 {
+    text-align: center;
+    color: #03090e;
+    margin-bottom: 20px;
+}
+
+.signup-box h6 {}
+
+.signup-box h6 {
+    color: #03090e;
+    margin-bottom: 12px;
+}
+
+.signup-box input {
+    margin-bottom: 20px;
+	background: transparent;
+	border: 1px solid #ddd;
+}
+
+.signup-signup {
+    float: right;
+}
+
+.signup-remember {
+    float: left;
+}
+
+.signup-signup a {
+    color: #008aff;
+}
+
+.signup-box form .theme-btn {
+    width: 100%;
+    border-radius: 0;
+	color: #fff;
+	text-align: center;
+    margin-top: 5px;
+}
+
+.signup-box form .theme-btn + span {
+    margin: 22px 0;
+    display: block;
+}
+
+.signup-social {
+    display: flex;
+    justify-content: space-between;
+}
+
+.signup-social a i {
+    width: 45px;
+    display: inline-block;
+    height: 45px;
+    font-size: 20px;
+    line-height: 45px;
+    color: #fff;
+    background: #3a559f;
+    text-align: center;
+}
+.signup-social a i.icofont-social-twitter {
+    background: #50abf1;
+}
+.signup-social a i.icofont-social-linkedin {
+    background: #dd4b39;
+}
+.signup-social a i.icofont-social-google-plus {
+    background: #0084b1;
+}
+.signup-social a i.icofont-camera {
     background: #c536a4;
 }
 /*----------------------------------
