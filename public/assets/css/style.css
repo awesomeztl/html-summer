@@ -923,6 +923,21 @@ hr {
     width: 50px;
     height: 2px;
 }
+.details-overview li {
+    position: relative;
+    padding: 5px;
+    list-style: none;
+}
+
+.details-overview li::before {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    background: #eb315a;
+    content: "";
+    width: 50px;
+    height: 2px;
+}
 .select-container {
     position: relative;
     margin-bottom: 30px;

@@ -9,7 +9,6 @@ var express = require('express')
 var User = require('./user.js')
 var Bloga = require('./bloga.js')
 var Blogb = require('./blogb.js')
-var Login = require('./login.js')
 var BookPost = require('./bookpost.js')
 var MoviePost = require('./moviepost.js')
 var Apply = require('./apply.js')
@@ -52,19 +51,27 @@ router.get('/group-details',function(req,res){
                 }
             })
         }
-        else if (content.power !== "admin") {
+        else if (content.power === "user") {
             Bloga.find(function(err,Blogs){
                 if(err){
                     return res.status(500).send('Server err')
                 }
                 res.render('group-details.html',{power : 2 ,count : 1, logins:req.session.loginUser,Blogs : Blogs})
             })
-        } else  {
+        } else if (content.power === "admin")  {
             Bloga.find(function(err,Blogs){
                 if(err){
                     return res.status(500).send('Server err')
                 }
                 res.render('group-details.html',{power : 3 ,count : 1, logins:req.session.loginUser,Blogs : Blogs})
+            })
+        }
+        else {
+            Bloga.find(function(err,Blogs){
+                if(err){
+                    return res.status(500).send('Server err')
+                }
+                res.render('group-details.html',{power : 4 ,count : 1, logins:req.session.loginUser,Blogs : Blogs})
             })
         }
     });
@@ -147,6 +154,17 @@ router.get('/movies',function(req,res){
     }
 })
 
+router.get('/administrator',function(req,res){
+    Apply.find(function(err,Applys){
+        if(err){
+            return res.status(500).send('Server err')
+        }
+        else{
+            res.render('administrator.html',{count : 1, logins:req.session.loginUser, Applys : Applys})
+        }
+    })
+})
+
 router.get('/book-details',function(req,res){
     if(!!req.session.loginUser){
         BookPost.find(function(err,BookPosts){
@@ -184,15 +202,57 @@ router.post('/addGroupa',function(req,res){
     })
 })
 
+// router.post('/beadmina',function(req,res){
+//     Groupa.update({name:req.session.loginUser},{$set:{name:req.body.name,power:req.body.power}},function(err,rs){
+//         if(err){
+//             console.log(err);
+//         }else{
+//             res.redirect('/group-details')
+//         }
+//     });
+// })
+
 router.post('/beadmina',function(req,res){
-    Groupa.update({name:req.session.loginUser},{$set:{name:req.body.name,power:req.body.power}},function(err,rs){
+    new Apply(req.body).save(function(err){
+        if(err){
+            return res.status(500).send('server err')
+        }
+        res.redirect('/group-details')
+    })
+})
+
+router.get('/agree',function(req,res){
+    var id = req.query.id.replace(/"/g, '')
+    Apply.findById(id, function (err, content) {
+        if (err) {
+            return res.status(500).send('Server error.')
+        }
+        Groupa.update({name:content.name},{$set:{name:content.name,power:content.power}},function(err,rs){
         if(err){
             console.log(err);
         }else{
-            res.redirect('/group-details')
+            Apply.findByIdAndRemove(id, function (err) {
+                if (err) {
+                    return res.status(500).send('Server error.')
+                }
+            })
+            res.redirect('/administrator')
         }
-    });
+        });
+    })  
+    
 })
+
+router.get('/confuse',function(req,res){
+    var id = req.query.id.replace(/"/g, '')
+    Apply.findByIdAndRemove(id, function (err) {
+        if (err) {
+            return res.status(500).send('Server error.')
+        }
+    })
+    res.redirect('/administrator')
+})
+
 
 router.post('/addBook',function(req,res){
     new BookPost(req.body).save(function(err){
@@ -208,7 +268,7 @@ router.post('/adda',function(req,res){
     if(err){
         return res.status(500).send('server err')
     }
-    res.redirect('/')
+    res.redirect('/group-details')
     })
 })
 
@@ -307,9 +367,8 @@ router.get('/deleteBloga',function(req,res){
         if(err){
             return res.status(500).send('server error')
         }
-
     })
-    res.redirect('/')
+    res.redirect('/group-details')
 })
 
 // router.get('/logout',function(req,res){

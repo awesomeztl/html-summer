@@ -37,7 +37,7 @@
 			<div class="container">
 				<div class="header-area">
 					<div class="logo">
-						<a href="http://localhost:3000/index/"><img src="/public/assets/img/logo.png" alt="logo" /></a>
+						<a href="/index/"><img src="/public/assets/img/logo.png" alt="logo" /></a>
 					</div>
 					<div class="header-right">
 						<form action="#">
@@ -71,16 +71,16 @@
 						<div class="responsive-menu"></div>
 					    <div class="mainmenu">
                             <ul id="primary-menu">
-                                <li><a  href="http://localhost:3000/index/">Home</a></li>
-                                <li><a href="http://localhost:3000/movies/">Movies</a></li>
-                                <li><a href="http://localhost:3000/books/">Books</a></li>
+                                <li><a  href="/index/">Home</a></li>
+                                <li><a href="/movies/">Movies</a></li>
+                                <li><a href="/books/">Books</a></li>
                        
-                                <li><a href="http://localhost:3000/groups/">Groups</a></li>
+                                <li><a href="/groups/">Groups</a></li>
 								<li><a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
 									<ul>
-										<li><a href="http://localhost:3000/book-details/">Book Details</a></li>
-										<li><a href="http://localhost:3000/movie-details/">Movie Details</a></li>
-										<li><a class="active" href="http://localhost:3000/group-details/">Group Details</a></li>
+										<li><a href="/book-details/">Book Details</a></li>
+										<li><a href="/movie-details/">Movie Details</a></li>
+										<li><a class="active" href="/group-details/">Group Details</a></li>
 									</ul>
 								</li>
                             </ul>
@@ -179,10 +179,12 @@
 								</form>
 								{{/if}}
 								{{if power>=2}}
-									<li><a class="blogpopup-popup" href='#'>[ Write Blogs ]</a></li>
+									<li class="blogpopup-popup theme-btn" href='#' style="float:right">[ Write Blogs ]</li>
 								{{/if}}
+							</ul>
+							<ul>
 								{{if power==4}}
-									<li><a class="theme-btn" href='#'>管理小组</a></li>
+									<li><a class="theme-btn" href='/administrator/' style="float:left">管理小组</a></li>
 								{{/if}}
 							</ul>
 						</div>
@@ -207,6 +209,9 @@
 							{{ each Blogs }}
 								<li><a href="#">Title:{{ $value.title }}</a></li>
 								<p>{{ $value.message }}</p>
+								{{if power>=3}}
+									<a class="theme-btn" href="/deleteBloga?id={{ $value._id }}">删除</a>
+								{{/if}}
 							{{ /each }}
 						</div>
 					</div>
