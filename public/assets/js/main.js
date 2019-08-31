@@ -47,6 +47,14 @@
 		$('.signup-area').hide();
 		return false;
 	});	
+	$('.blogpopup-popup').on('click', function () {
+		$('.blogpopup-area').show();
+		return false;
+	});
+	$('.blogpopup-box > a').on('click', function () {
+		$('.blogpopup-area').hide();
+		return false;
+	});
 	/*----------------------------
     START - Slider activation
     ------------------------------ */

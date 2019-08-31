@@ -2,7 +2,7 @@ var mongoose = require("./index");
 var Schema = mongoose.Schema;
 
 //设计表结构
-var groupaSchema = new Schema({
+var applySchema = new Schema({
     name:{
         type:String,
         require:true
@@ -14,4 +14,4 @@ var groupaSchema = new Schema({
 })
 
 //将文档结构发布为模型并导出
-module.exports = mongoose.model('Groupa',groupaSchema)
+module.exports = mongoose.model('Apply',applySchema)

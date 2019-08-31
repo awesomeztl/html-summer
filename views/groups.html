@@ -59,10 +59,8 @@
 						<ul>
 							<li><a href="#">Welcome!</a></li>
 							{{if count == 1}}
-							{{ each logins }}
-								<li><a href="#">{{ $value.name }}</a></li>
-								<li><a href="/logout?id={{ $value._id }}">LOG OUT</a></li>
-							{{ /each }}
+								<li><a href="#">{{ logins }}</a></li>
+								<li><a href="/logout" id="logout">Log Out</a></li>
 							{{else}}
 								<li><a class="login-popup" href="#">Login</a></li>
 								<li><a class="signup-popup" href='#'>Signup</a></li>								
@@ -82,6 +80,7 @@
 									<ul>
 										<li><a href="http://localhost:3000/book-details/">Book Details</a></li>
 										<li><a href="http://localhost:3000/movie-details/">Movie Details</a></li>
+										<li><a href="http://localhost:3000/group-details/">Group Details</a></li>
 									</ul>
 								</li>
                             </ul>
@@ -160,7 +159,7 @@
 								The hero, is to fight for justice.The league，is to keep together，come with us，and create your
 								legend.</p>
 							</div>
-							<a href="http://localhost:3000/groups-details/">Join</a>
+							<a href="http://localhost:3000/group-details/">Join</a>
 						</div>
 						<div class="single-news">
 							<div class="news-bg-2"></div>
@@ -173,7 +172,7 @@
 								<p>
 								Often I am asked, what does a hero truly need? Swift? Strong? Wish? That is for you to decide.</p>
 							</div>
-							<a href="http://localhost:3000/groups-details/">Join</a>
+							<a href="http://localhost:3000/group-details/">Join</a>
 						</div>
 						<div class="single-news">
 							<div class="news-bg-3"></div>
@@ -187,7 +186,7 @@
 								Not just a game, this is BATTLE ROYALE.Winer Winer Chicken Dinner!</p>
 							</div>
 							
-							<a href="http://localhost:3000/groups-details/">Join</a>
+							<a href="http://localhost:3000/group-details/">Join</a>
 						</div>
 					</div>
 				</div>

@@ -59,10 +59,8 @@
 						<ul>
 							<li><a href="#">Welcome!</a></li>
 							{{if count == 1}}
-							{{ each logins }}
-								<li><a href="#">{{ $value.name }}</a></li>
-								<li><a href="/logout?id={{ $value._id }}">LOG OUT</a></li>
-							{{ /each }}
+								<li><a href="#">{{ logins }}</a></li>
+								<li><a href="/logout" id="logout">Log Out</a></li>
 							{{else}}
 								<li><a class="login-popup" href="#">Login</a></li>
 								<li><a class="signup-popup" href='#'>Signup</a></li>								
@@ -73,7 +71,7 @@
 						<div class="responsive-menu"></div>
 					    <div class="mainmenu">
                             <ul id="primary-menu">
-                                <li><a class="active" href="http://localhost:3000/index/">Home</a></li>
+                                <li><a  href="http://localhost:3000/index/">Home</a></li>
                                 <li><a href="http://localhost:3000/movies/">Movies</a></li>
                                 <li><a href="http://localhost:3000/books/">Books</a></li>
                        
@@ -82,6 +80,7 @@
 									<ul>
 										<li><a href="http://localhost:3000/book-details/">Book Details</a></li>
 										<li><a href="http://localhost:3000/movie-details/">Movie Details</a></li>
+										<li><a class="active" href="http://localhost:3000/group-details/">Group Details</a></li>
 									</ul>
 								</li>
                             </ul>
@@ -151,11 +150,16 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="single-news">
-		
 							<div class="news-bg-1">
+								{{if power==1}}
 								<div class="row">
-									<a href="#" class="theme-btn">加入小组</a>
+									<form action="/addGroupa" method="post">
+										<input type="hidden" name="name" value="{{ logins }}">
+										<input type="hidden" name="power" value="user">
+										<input type="submit" value="JOIN" class="button">
+									</form>
 								</div>
+								{{/if}}
 							</div>
 							<div class="news-content">
 								<p>
@@ -167,39 +171,47 @@
 								</p>
 							</div>
 							<ul>
-								<li href="#" class="theme-btn" style="float:right">申请成为管理员</li>
-								<li href="#" class="theme-btn" style="float:left">发布帖子</li>
+								{{if power==2}}
+								<form action="/beadmina" method="post">
+									<input type="hidden" name="name" value="{{ logins }}">
+									<input type="hidden" name="power" value="admin">
+									<input type="submit" value="BeAdmin" class="button">
+								</form>
+								{{/if}}
+								{{if power>=2}}
+									<li><a class="blogpopup-popup" href='#'>[ Write Blogs ]</a></li>
+								{{/if}}
+								{{if power==4}}
+									<li><a class="theme-btn" href='#'>管理小组</a></li>
+								{{/if}}
 							</ul>
 						</div>
 					</div>
 				</div>
+				<div class="blogpopup-area">
+					<div class="blogpopup-box">
+						<a href="#"><i class="icofont icofont-close"></i></a>
+						<h2>BLOG</h2>
+						<form action="/adda" method="post">
+							<h6>TITLE</h6>
+							<input type="text" name="title" />
+							<h6>MESSAGE</h6>
+							<textarea name="message"></textarea>
+							<input type="submit" value="SUBMIT" class="button">
+						</form>
+					</div>
+				</div>
+				<div class="details-overview">
+						<h2>Blog</h2>
+						<div>
+							{{ each Blogs }}
+								<li><a href="#">Title:{{ $value.title }}</a></li>
+								<p>{{ $value.message }}</p>
+							{{ /each }}
+						</div>
+					</div>
 			</div>
 		</section><!-- blog area end -->
-		
-		<div class="content">
-            <table cellspacing="0">
-                <thead>
-                    <tr>
-                        <td>姓名</td>
-                        <td>密码</td>
-                    </tr>
-                </thead>
-                <tbody>
-                {{ each users }}
-                    <tr>
-                        <td>{{ $value.name }}</td>
-                        <td>{{ $value.password }}</td>
-                        <td>
-                            <!-- 注意这里 id={{  }} 的=(这个等号)前后不能打空格 不能打成 id = {{  }}
-                                因为打了空格就相当于加了字符串空格，获取的id会有误 -->
-                            <a href="/edit?id={{ $value._id }}">编辑</a>
-                            <a href="/delete?id={{ $value._id }}">删除</a>
-                        </td>
-                    </tr>
-                {{ /each }}
-                </tbody>
-            </table>
-        </div>
 		
 		<footer class="footer">
 			<div class="container">
